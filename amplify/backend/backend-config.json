@@ -1,6 +1,6 @@
 {
   "auth": {
-    "DISCUSS": {
+    "Whatsapp": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -12,7 +12,7 @@
         ],
         "signupAttributes": [],
         "passwordProtectionSettings": {
-          "passwordPolicyMinLength": 8,
+          "passwordPolicyMinLength": 6,
           "passwordPolicyCharacters": []
         },
         "mfaConfiguration": "OFF",
@@ -26,7 +26,7 @@
     }
   },
   "api": {
-    "DISCUSS": {
+    "Whatsapp": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -46,6 +46,13 @@
           ]
         }
       }
+    }
+  },
+  "storage": {
+    "s3whatsappstoragecf31e950": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
     }
   }
 }

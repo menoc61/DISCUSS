@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
     "auth": {
-        "DISCUSS": {
+        "Whatsapp": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
@@ -11,10 +11,16 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "api": {
-        "DISCUSS": {
+        "Whatsapp": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
+        }
+    },
+    "storage": {
+        "s3whatsappstoragecf31e950": {
+            "BucketName": "string",
+            "Region": "string"
         }
     }
 }

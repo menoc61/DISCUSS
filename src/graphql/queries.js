@@ -1,21 +1,17 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getUser = /* GraphQL */ `
-  query GetUser($id: ID!) {
-    getUser(id: $id) {
+export const getAttachment = /* GraphQL */ `
+  query GetAttachment($id: ID!) {
+    getAttachment(id: $id) {
       id
-      name
-      image
-      status
-      Messages {
-        nextToken
-        startedAt
-      }
-      chatrooms {
-        nextToken
-        startedAt
-      }
+      storageKey
+      type
+      width
+      height
+      duration
+      messageID
+      chatroomID
       createdAt
       updatedAt
       _version
@@ -24,18 +20,22 @@ export const getUser = /* GraphQL */ `
     }
   }
 `;
-export const listUsers = /* GraphQL */ `
-  query ListUsers(
-    $filter: ModelUserFilterInput
+export const listAttachments = /* GraphQL */ `
+  query ListAttachments(
+    $filter: ModelAttachmentFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listAttachments(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
-        image
-        status
+        storageKey
+        type
+        width
+        height
+        duration
+        messageID
+        chatroomID
         createdAt
         updatedAt
         _version
@@ -47,14 +47,14 @@ export const listUsers = /* GraphQL */ `
     }
   }
 `;
-export const syncUsers = /* GraphQL */ `
-  query SyncUsers(
-    $filter: ModelUserFilterInput
+export const syncAttachments = /* GraphQL */ `
+  query SyncAttachments(
+    $filter: ModelAttachmentFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncUsers(
+    syncAttachments(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -62,9 +62,13 @@ export const syncUsers = /* GraphQL */ `
     ) {
       items {
         id
-        name
-        image
-        status
+        storageKey
+        type
+        width
+        height
+        duration
+        messageID
+        chatroomID
         createdAt
         updatedAt
         _version
@@ -80,22 +84,70 @@ export const getChatRoom = /* GraphQL */ `
   query GetChatRoom($id: ID!) {
     getChatRoom(id: $id) {
       id
+      name
+      image
+      Messages {
+        items {
+          id
+          createdAt
+          text
+          chatroomID
+          userID
+          images
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      users {
+        items {
+          id
+          chatRoomID
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       LastMessage {
         id
-        text
-        userID
-        chatroomID
         createdAt
+        text
+        chatroomID
+        userID
+        images
+        Attachments {
+          nextToken
+          startedAt
+        }
         updatedAt
         _version
         _deleted
         _lastChangedAt
       }
-      Messages {
-        nextToken
-        startedAt
-      }
-      Users {
+      Attachments {
+        items {
+          id
+          storageKey
+          type
+          width
+          height
+          duration
+          messageID
+          chatroomID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         nextToken
         startedAt
       }
@@ -117,6 +169,32 @@ export const listChatRooms = /* GraphQL */ `
     listChatRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        name
+        image
+        Messages {
+          nextToken
+          startedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        LastMessage {
+          id
+          createdAt
+          text
+          chatroomID
+          userID
+          images
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        Attachments {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -144,6 +222,32 @@ export const syncChatRooms = /* GraphQL */ `
     ) {
       items {
         id
+        name
+        image
+        Messages {
+          nextToken
+          startedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        LastMessage {
+          id
+          createdAt
+          text
+          chatroomID
+          userID
+          images
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        Attachments {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -160,10 +264,30 @@ export const getMessage = /* GraphQL */ `
   query GetMessage($id: ID!) {
     getMessage(id: $id) {
       id
-      text
-      userID
-      chatroomID
       createdAt
+      text
+      chatroomID
+      userID
+      images
+      Attachments {
+        items {
+          id
+          storageKey
+          type
+          width
+          height
+          duration
+          messageID
+          chatroomID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       updatedAt
       _version
       _deleted
@@ -180,10 +304,15 @@ export const listMessages = /* GraphQL */ `
     listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        text
-        userID
-        chatroomID
         createdAt
+        text
+        chatroomID
+        userID
+        images
+        Attachments {
+          nextToken
+          startedAt
+        }
         updatedAt
         _version
         _deleted
@@ -209,10 +338,15 @@ export const syncMessages = /* GraphQL */ `
     ) {
       items {
         id
-        text
-        userID
-        chatroomID
         createdAt
+        text
+        chatroomID
+        userID
+        images
+        Attachments {
+          nextToken
+          startedAt
+        }
         updatedAt
         _version
         _deleted
@@ -223,31 +357,80 @@ export const syncMessages = /* GraphQL */ `
     }
   }
 `;
-export const getChatRoomUser = /* GraphQL */ `
-  query GetChatRoomUser($id: ID!) {
-    getChatRoomUser(id: $id) {
-      id
-      userID
-      chatRoomID
-      user {
+export const listMessagesByChatRoom = /* GraphQL */ `
+  query ListMessagesByChatRoom(
+    $chatroomID: ID!
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelMessageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMessagesByChatRoom(
+      chatroomID: $chatroomID
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
         id
-        name
-        image
-        status
         createdAt
+        text
+        chatroomID
+        userID
+        images
+        Attachments {
+          nextToken
+          startedAt
+        }
         updatedAt
         _version
         _deleted
         _lastChangedAt
       }
-      chatRoom {
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        chatRoomLastMessageId
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
+      id
+      name
+      status
+      image
+      Messages {
+        items {
+          id
+          createdAt
+          text
+          chatroomID
+          userID
+          images
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      ChatRooms {
+        items {
+          id
+          chatRoomID
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
@@ -257,17 +440,26 @@ export const getChatRoomUser = /* GraphQL */ `
     }
   }
 `;
-export const listChatRoomUsers = /* GraphQL */ `
-  query ListChatRoomUsers(
-    $filter: ModelChatRoomUserFilterInput
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUserFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listChatRoomUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        userID
-        chatRoomID
+        name
+        status
+        image
+        Messages {
+          nextToken
+          startedAt
+        }
+        ChatRooms {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -279,14 +471,14 @@ export const listChatRoomUsers = /* GraphQL */ `
     }
   }
 `;
-export const syncChatRoomUsers = /* GraphQL */ `
-  query SyncChatRoomUsers(
-    $filter: ModelChatRoomUserFilterInput
+export const syncUsers = /* GraphQL */ `
+  query SyncUsers(
+    $filter: ModelUserFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncChatRoomUsers(
+    syncUsers(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -294,8 +486,179 @@ export const syncChatRoomUsers = /* GraphQL */ `
     ) {
       items {
         id
-        userID
+        name
+        status
+        image
+        Messages {
+          nextToken
+          startedAt
+        }
+        ChatRooms {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getUserChatRoom = /* GraphQL */ `
+  query GetUserChatRoom($id: ID!) {
+    getUserChatRoom(id: $id) {
+      id
+      chatRoomID
+      userID
+      chatRoom {
+        id
+        name
+        image
+        Messages {
+          nextToken
+          startedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        LastMessage {
+          id
+          createdAt
+          text
+          chatroomID
+          userID
+          images
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        Attachments {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        chatRoomLastMessageId
+      }
+      user {
+        id
+        name
+        status
+        image
+        Messages {
+          nextToken
+          startedAt
+        }
+        ChatRooms {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listUserChatRooms = /* GraphQL */ `
+  query ListUserChatRooms(
+    $filter: ModelUserChatRoomFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUserChatRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
         chatRoomID
+        userID
+        chatRoom {
+          id
+          name
+          image
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          chatRoomLastMessageId
+        }
+        user {
+          id
+          name
+          status
+          image
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncUserChatRooms = /* GraphQL */ `
+  query SyncUserChatRooms(
+    $filter: ModelUserChatRoomFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncUserChatRooms(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        chatRoomID
+        userID
+        chatRoom {
+          id
+          name
+          image
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          chatRoomLastMessageId
+        }
+        user {
+          id
+          name
+          status
+          image
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         createdAt
         updatedAt
         _version

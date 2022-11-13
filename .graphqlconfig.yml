@@ -1,6 +1,6 @@
 projects:
-  DISCUSS:
-    schemaPath: amplify/backend/api/DISCUSS/build/schema.graphql
+  Whatsapp:
+    schemaPath: amplify/backend/api/Whatsapp/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
@@ -10,9 +10,9 @@ projects:
         codeGenTarget: javascript
         generatedFileName: ''
         docsFilePath: src/graphql
-        region: eu-west-2
+        region: eu-west-1
         apiId: null
-        maxDepth: 2
+        maxDepth: 3
 extensions:
   amplify:
     version: 3
