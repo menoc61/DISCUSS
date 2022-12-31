@@ -1,7 +1,7 @@
 {
-  "resourceName": "s3whatsappstoragecf31e950",
-  "bucketName": "whatsapp-storage-cf31e950",
-  "policyUUID": "1f94822e",
+  "resourceName": "s3discussstoragebdc92818",
+  "bucketName": "discuss-storage-bdc92818",
+  "policyUUID": "58f27244",
   "storageAccess": "auth",
   "guestAccess": [],
   "authAccess": [

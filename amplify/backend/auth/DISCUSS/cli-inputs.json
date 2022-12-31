@@ -3,8 +3,8 @@
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "whatsa3d2f819c",
-    "userPoolName": "Whatsapp",
+    "resourceNameTruncated": "discus33efdd14",
+    "userPoolName": "DISCUSS",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -17,7 +17,7 @@
     "emailVerificationSubject": "Verification code: {####}",
     "emailVerificationMessage": "Verification code: {####}",
     "defaultPasswordPolicy": false,
-    "passwordPolicyMinLength": 6,
+    "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [],
     "aliasAttributes": [],
@@ -25,10 +25,10 @@
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "Whatsa3d2f819c_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "DISCUS33efdd14_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "3d2f819c",
-    "resourceName": "Whatsapp",
+    "sharedId": "33efdd14",
+    "resourceName": "DISCUSS",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",
     "usernameAttributes": [
@@ -41,6 +41,21 @@
     "thirdPartyAuth": false,
     "authProviders": [],
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": [],
+    "hostedUI": false
   }
 } 

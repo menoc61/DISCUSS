@@ -1,7 +1,7 @@
 {
   "version": 1,
   "serviceConfiguration": {
-    "apiName": "Whatsapp",
+    "apiName": "DISCUSS",
     "serviceName": "AppSync",
     "defaultAuthType": {
       "mode": "API_KEY",
